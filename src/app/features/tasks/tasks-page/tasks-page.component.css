@@ -1,0 +1,104 @@
+/* Container principal */
+.tasks-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  font-family: system-ui, sans-serif;
+}
+
+/* Titres */
+.section-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+/* Liste des tâches */
+.task-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.task-item {
+  background: #f5f6f7;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s ease;
+}
+
+.task-item:hover {
+  background: #eceff1;
+}
+
+.loading {
+  color: #666;
+  font-style: italic;
+}
+
+/* Séparateur */
+.divider {
+  margin: 24px 0;
+  border: none;
+  height: 1px;
+  background: #ddd;
+}
+
+/* Formulaire */
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  font-size: 0.9rem;
+  color: #444;
+}
+
+input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Boutons */
+.btn {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background 0.2s ease;
+  width: fit-content;
+}
+
+.btn:hover {
+  background: #005fcc;
+}
+
+.btn.danger {
+  background: #e63946;
+}
+
+.btn.danger:hover {
+  background: #c62828;
+}

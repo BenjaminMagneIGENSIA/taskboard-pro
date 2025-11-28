@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
+
   private tasks = [
     { id: 1, title: 'préparer un cours Angular'},
     { id: 2, title: 'relire le module RxJS' },
@@ -28,5 +27,4 @@ export class TaskService {
     this.lastId--;
     this.taskSubject.next(this.tasks);
   }
-
 }

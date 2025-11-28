@@ -1,18 +1,2 @@
-<h2>Liste des tâches</h2>
-@if (tasks$ | async; as tasks) {
-  <ul>
-    @for (t of tasks; track t.id) {
-      <li>{{t.title}}</li>
-    }
-  </ul>
-} @else {
-  <p>Tâche en cours...</p>
-}
-<hr/>
-<h2>Actions</h2>
-<label for="nomTache">Saisissez le nom de vôtre tâche à ajouter</label>
-<input id="nomTache" type="text" #taskTitle>
-<button (click)="addTask(taskTitle.value); taskTitle.value=''">Ajouter une tâche</button>
-<label for="idTache">Saisissez l'ID de la tâche à supprimer</label>
-<input id="idTache" type="number" #taskId>
-<button (click)="removeTask(taskId.value); taskId.value=''">Supprimer une tâche</button>
+<h2>Accueil</h2>
+<p>Bienvenue sur l'application TaskBoard Pro G2 !</p>
