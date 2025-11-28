@@ -30,5 +30,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ng new TaskBoard-Pro-G2 --routing --style=css
 ng g c home
 ng g c about
+ng serve
 
 ## Routes fonctionnels : 
+    - Home
+    - About
+via app.component.ts
