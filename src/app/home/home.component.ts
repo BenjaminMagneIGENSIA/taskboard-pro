@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TaskService } from '../core/services/task.service';
 import { AsyncPipe } from '@angular/common';
 
@@ -10,10 +10,15 @@ import { AsyncPipe } from '@angular/common';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  tasks$!: ReturnType<TaskService['getTasks']>;
+  
+  taskService = inject(TaskService);
+  tasks$ = this.taskService.tasks$;
 
-  constructor(private taskService: TaskService) {
-    this.tasks$ = this.taskService.getTasks();
+  addTask(title: string) {
+    this.taskService.addTask(title);
+  }
+  removeTask(id: number) {
+    this.taskService.removeTask(id);
   }
   count = 0;
   intervalId: any;

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
@@ -11,7 +12,21 @@ export class TaskService {
     { id: 2, title: 'relire le module RxJS' },
     { id: 3, title: 'Corriger les TPs'}
   ];
-  getTasks() {
-    return of(this.tasks).pipe(delay(1000));
+
+  private lastId = 3;
+  
+  private taskSubject = new BehaviorSubject(this.tasks);
+  tasks$ = this.taskSubject.asObservable();
+
+  addTask(title: string) {
+    const newTask = { id: ++this.lastId, title };
+    this.tasks = [...this.tasks, newTask];
+    this.taskSubject.next(this.tasks);
   }
+  removeTask(id: number) {
+    this.tasks = this.tasks.filter(task => task.id !== this.lastId);
+    this.lastId--;
+    this.taskSubject.next(this.tasks);
+  }
+
 }

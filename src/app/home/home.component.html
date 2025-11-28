@@ -8,4 +8,11 @@
 } @else {
   <p>Tâche en cours...</p>
 }
-<p>Temps écoulé : {{count / 2}} secondes</p>
+<hr/>
+<h2>Actions</h2>
+<label for="nomTache">Saisissez le nom de vôtre tâche à ajouter</label>
+<input id="nomTache" type="text" #taskTitle>
+<button (click)="addTask(taskTitle.value); taskTitle.value=''">Ajouter une tâche</button>
+<label for="idTache">Saisissez l'ID de la tâche à supprimer</label>
+<input id="idTache" type="number" #taskId>
+<button (click)="removeTask(taskId.value); taskId.value=''">Supprimer une tâche</button>
