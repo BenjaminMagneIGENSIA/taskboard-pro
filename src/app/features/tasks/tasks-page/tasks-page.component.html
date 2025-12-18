@@ -1,33 +1,38 @@
 <div class="tasks-container">
 
-  <h2 class="section-title">Liste des tâches</h2>
+  <h2 class="section-title">Liste des taches</h2>
 
   @if (tasks$ | async; as tasks) {
     <ul class="task-list">
       @for (t of tasks; track t.id) {
         <li class="task-item">
           <span>{{ t.title }}</span>
+          <div class="task-actions">
+            <button class="btn ghost" (click)="highlightTask(t.title)">Mettre en avant</button>
+            <button class="btn danger" (click)="deleteTask(t.id)">Supprimer</button>
+          </div>
         </li>
       }
     </ul>
   } @else {
-    <p class="loading">Tâches en cours...</p>
+    <p class="loading">Taches en cours...</p>
   }
 
   <hr class="divider"/>
 
-  <h2 class="section-title">Actions</h2>
+  <h2 class="section-title">Ajouter une tache</h2>
 
   <div class="form-group">
-    <label for="nomTache">Nom de la tâche</label>
-    <input id="nomTache" type="text" #taskTitle />
-    <button class="btn" (click)="addTask(taskTitle.value)">Ajouter</button>
+    <label for="nomTache">Nom de la tache</label>
+    <input id="nomTache" type="text" #taskInput (keyup.enter)="addTaskFromInput(taskInput)" />
+    <button class="btn" (click)="addTaskFromInput(taskInput)">Ajouter</button>
   </div>
 
-  <div class="form-group">
-    <label for="idTache">ID de la tâche à supprimer</label>
-    <input id="idTache" type="number" #taskId />
-    <button class="btn danger" (click)="removeTask(taskId.valueAsNumber)">Supprimer</button>
+  <hr class="divider"/>
+
+  <h2 class="section-title">Mise en avant</h2>
+  <div class="highlight-zone">
+    <ng-container #highlightContainer></ng-container>
   </div>
 
 </div>

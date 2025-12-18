@@ -26,42 +26,33 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
-## Commandes utilisés : 
-    ng new TaskBoard-Pro-G2 --routing --style=css
-    ng g c home
-    ng g c about
-    ng serve
+## Commandes utilisees
+- `ng new TaskBoard-Pro-G2 --routing --style=css`
+- `ng g c home`
+- `ng g c about`
+- `ng serve`
 
-## Routes fonctionnels : 
-    - Home
-    - About
-via app.component.ts
+## Routes fonctionnelles
+- Home
+- About
+via `app.component.ts`
 
-## Séquence 2 - Logique réactive du flux de données
-## Structure du flux
-- Le service TaskService utilise un **BehaviorSubject** pour stocker et diffuser la liste des tâches.
-- Le composant 'Home s'abonne à ce flux via 'tasks$' et le **pipe async**.
-## Mise à jour des données
-- La méthode addTask() ajoute une tâche puis appelle next() pour émettre la nouvelle liste.
-- La méthode removeTask()* supprime une tâche puis émet à nouveau la liste mise à jour.
-- La vue est automatiquement réactualisée sans rechargement.
-## Points clés retenus
-- Pas besoin d'appeler. getTasks() à chaque fois : la donnée est **vivante**.
-- '| async' gère l'abonnement et le désabonnement automatiquement.
-- Le flux reste cohérent entre le service et la vue.
+## Sequence 2 - Logique reactive du flux de donnees
+### Structure du flux
+- Le service TaskService utilise un **BehaviorSubject** pour stocker et diffuser la liste des taches.
+- Le composant Home s'abonne a ce flux via `tasks$` et le **pipe async**.
+### Mise a jour des donnees
+- La methode `addTask()` ajoute une tache puis appelle `next()` pour emettre la nouvelle liste.
+- La methode `deleteTask()` supprime une tache puis emet la liste mise a jour.
+- La vue est automatiquement actualisee sans rechargement.
+### Points clefs
+- Pas besoin d'appeler `getTasks()` a chaque fois : la donnee est **vivante**.
+- `| async` gere l'abonnement et le desabonnement automatiquement.
+- Le flux reste coherent entre le service et la vue.
+- Un Observable est une source de donnees asynchrone emettant dans le temps; d'autres composants peuvent s'y abonner pour suivre ces changements.
 
-- Observable : c'est une source de données asynchrone emettant dans le temps. D'autres composant peuvent s'abonner à cette observable pour suivre ces changements
-
-## Séquence 3 : Lazy Loading :
-### • Explication simple de ce que j'ai compris
-Le lazy loading permet de charger certaines parties d’une application uniquement quand l’utilisateur en a besoin, plutôt que tout charger dès le début. Cela améliore la vitesse d’ouverture de l’application.
-J’ai compris aussi qu’il faut faire attention aux routes : la route du parent et la route de la feature se combinent. Si les chemins ne sont pas alignés (par exemple si on répète le même nom dans le parent et l’enfant), l’URL finale ne correspond plus à ce qu’on tape et la page ne s’affiche pas. C’est souvent là que l’on se trompe.
-
-### • Qu'est-ce que le Lazy Loading
-C’est une technique où l’application charge d’abord uniquement le minimum nécessaire pour fonctionner. Les autres pages ou fonctionnalités sont chargées plus tard, au moment de la navigation. Cela réduit le poids initial de l’application et accélère son démarrage.
-
-### • Comment on structure une app avec des features
-On organise l’application en plusieurs dossiers appelés “features”.  
-Chaque feature correspond à une partie bien définie de l’application (ex : tâches, utilisateurs, administration).  
-Chaque feature contient ses composants, ses services et ses routes.  
-Grâce à cette organisation, chaque feature peut être chargée à la demande via le lazy loading.
+## Sequence 3 - Lazy Loading & Composants dynamiques
+- **Qu'est-ce que le Lazy Loading ?** C'est le fait de charger une page ou une feature uniquement quand l'utilisateur en a besoin. On allege ainsi le bundle initial et l'ouverture de l'app est plus rapide.
+- **Organisation avec `features/`** : chaque partie metier (taches, about...) vit dans son propre dossier avec son composant, son service et ses routes. On declare ensuite la route parent qui fait un `loadChildren` ou `loadComponent` pour charger la feature a la demande.
+- **Qu'est-ce qu'un composant dynamique ?** Au lieu d'etre ecrit directement dans le template, il est cree au runtime par le code (ex: pour afficher temporairement un bloc de mise en avant).
+- **Comment fonctionne `ViewContainerRef` + `createComponent()` ?** On place un ancrage dans le template (`#highlightContainer`). Dans le code, on recupere ce container, on l'efface avec `clear()` si besoin puis on appelle `createComponent()` pour injecter le composant voulu et lui passer ses inputs. Rien n'est charge tant que le bouton n'est pas clique, ce qui garde l'UI legere et flexible.

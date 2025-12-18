@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,9 +7,9 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 export class TaskService {
 
   private tasks = [
-    { id: 1, title: 'préparer un cours Angular'},
+    { id: 1, title: 'preparer un cours Angular' },
     { id: 2, title: 'relire le module RxJS' },
-    { id: 3, title: 'Corriger les TPs'}
+    { id: 3, title: 'corriger les TPs' }
   ];
 
   private lastId = 3;
@@ -22,9 +22,9 @@ export class TaskService {
     this.tasks = [...this.tasks, newTask];
     this.taskSubject.next(this.tasks);
   }
-  removeTask(id: number) {
-    this.tasks = this.tasks.filter(task => task.id !== this.lastId);
-    this.lastId--;
+
+  deleteTask(id: number) {
+    this.tasks = this.tasks.filter(task => task.id !== id);
     this.taskSubject.next(this.tasks);
   }
 }

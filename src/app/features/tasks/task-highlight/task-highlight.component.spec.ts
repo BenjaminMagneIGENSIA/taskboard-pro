@@ -1,15 +1,27 @@
-import { Component, Input } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TaskHighlightComponent } from './task-highlight.component';
 
-@Component({
-  selector: 'app-task-highlight',
-  template: `
-    <div class="task-highlight">
-      <h3>Tâche mise en avant</h3>
-      <p>{{ title }}</p>
-    </div>
-  `,
-  styleUrl: './task-highlight.component.css',
-})
-export class TaskHighlight {
-  @Input() title = ''; // le composant peut recevoir une donnée (le titre ici)
-}
+describe('TaskHighlightComponent', () => {
+  let component: TaskHighlightComponent;
+  let fixture: ComponentFixture<TaskHighlightComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [TaskHighlightComponent]
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(TaskHighlightComponent);
+    component = fixture.componentInstance;
+    component.title = 'Tache test';
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should render provided title', () => {
+    const textContent = fixture.nativeElement.querySelector('p')?.textContent?.trim();
+    expect(textContent).toBe('Tache test');
+  });
+});

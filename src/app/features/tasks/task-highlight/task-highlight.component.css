@@ -1,0 +1,31 @@
+@keyframes popIn {
+  from {
+    transform: translateY(6px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.task-highlight {
+  background: linear-gradient(135deg, #f5f8ff, #eef4ff);
+  border: 1px solid #d9e4ff;
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 6px 18px rgba(12, 82, 189, 0.08);
+  animation: popIn 180ms ease-out;
+}
+
+.task-highlight h3 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  color: #0b63c5;
+}
+
+.task-highlight p {
+  margin: 0;
+  color: #1d2d3b;
+  font-weight: 500;
+}

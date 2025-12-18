@@ -1,6 +1,6 @@
 /* Container principal */
 .tasks-container {
-  max-width: 600px;
+  max-width: 680px;
   margin: 40px auto;
   padding: 24px;
   background: #ffffff;
@@ -17,7 +17,7 @@
   margin-bottom: 12px;
 }
 
-/* Liste des tâches */
+/* Liste des taches */
 .task-list {
   margin: 0;
   padding: 0;
@@ -31,6 +31,7 @@
   border-radius: 10px;
   display: flex;
   align-items: center;
+  gap: 12px;
   transition: background 0.2s ease;
 }
 
@@ -38,12 +39,19 @@
   background: #eceff1;
 }
 
+.task-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
 .loading {
   color: #666;
   font-style: italic;
 }
 
-/* Séparateur */
+/* Separateur */
 .divider {
   margin: 24px 0;
   border: none;
@@ -87,12 +95,23 @@ input:focus {
   cursor: pointer;
   font-size: 0.95rem;
   font-weight: 500;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   width: fit-content;
 }
 
 .btn:hover {
   background: #005fcc;
+}
+
+.btn.ghost {
+  background: transparent;
+  color: #0b63c5;
+  border: 1px solid #b8d5ff;
+}
+
+.btn.ghost:hover {
+  background: #e8f2ff;
+  border-color: #86b7ff;
 }
 
 .btn.danger {
@@ -101,4 +120,13 @@ input:focus {
 
 .btn.danger:hover {
   background: #c62828;
+}
+
+/* Mise en avant */
+.highlight-zone {
+  min-height: 90px;
+  border: 1px dashed #c7d3e1;
+  border-radius: 12px;
+  padding: 12px;
+  background: #f8fbff;
 }
