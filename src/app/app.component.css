@@ -1,0 +1,37 @@
+nav {
+  display: flex;
+  gap: 16px;
+  padding: 16px 24px;
+  background: rgba(31, 25, 52, 0.85);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(6px);
+}
+
+nav a {
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: var(--text);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+nav a.active,
+nav a:hover {
+  background: rgba(165, 123, 255, 0.18);
+  color: var(--accent-strong);
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  margin: 0 0 24px;
+}
+
+footer {
+  padding: 24px;
+  text-align: center;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  background: rgba(22, 17, 41, 0.9);
+}
