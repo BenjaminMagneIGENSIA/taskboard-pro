@@ -1,23 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// tasks-page.ts
 
-import { TasksPageComponent } from './tasks-page.component';
+import { Component, ViewChild, ViewContainerRef } from '@angular/core';
+import { TaskHighlight } from '../task-highlight/task-highlight.component';
 
-describe('TasksPageComponent', () => {
-  let component: TasksPageComponent;
-  let fixture: ComponentFixture<TasksPageComponent>;
+@Component({ ... })
+export class TasksPageComponent {
+  @ViewChild('highlightContainer', { read: ViewContainerRef })
+  container!: ViewContainerRef;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [TasksPageComponent]
-    })
-    .compileComponents();
+  highlight(task: Task) {
+    // Efface le contenu précédent
+    this.container.clear();
     
-    fixture = TestBed.createComponent(TasksPageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    // Crée le composant TaskHighlight
+    const ref = this.container.createComponent(TaskHighlight);
+    
+    // Passe les données au composant
+    ref.instance.title = task.title;
+  }
+}

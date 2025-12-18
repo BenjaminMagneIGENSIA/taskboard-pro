@@ -27,7 +27,7 @@
   <div class="form-group">
     <label for="idTache">ID de la tâche à supprimer</label>
     <input id="idTache" type="number" #taskId />
-    <button class="btn danger" (click)="removeTask(taskId.value)">Supprimer</button>
+    <button class="btn danger" (click)="removeTask(taskId.valueAsNumber)">Supprimer</button>
   </div>
 
 </div>
