@@ -14,10 +14,6 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Performance (Lighthouse)
-- `npm run start:prod` : lance le serveur avec la configuration production pour des mesures realistes.
-- `npm run build:prod` : build production (minification + optimisations Angular).
-
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
@@ -126,12 +122,6 @@ via `app.component.ts`
 - Code coverage : 78%
 - Temps d'execution : environ 9 secondes
 
-#### Résultats LightHouse :
-- Accessibility : 100
-- Performance : 57
-- SEO : 90
-- Best practices : 100
-
 ### Reflexion personnelle
 Cette sequence m'a appris a formaliser mes attentes avant d'ecrire du code et a m'appuyer sur les tests pour refactorer sans crainte. La partie la plus utile a ete l'usage de TestBed pour reproduire l'environnement Angular et comprendre comment injecter les dependances. Je compte continuer a ecrire des tests systematiquement pour chaque nouvelle fonctionnalite et viser une couverture stable au-dessus de 75%.
 
@@ -139,3 +129,20 @@ Cette sequence m'a appris a formaliser mes attentes avant d'ecrire du code et a 
 - Angular Testing Guide (https://angular.io/guide/testing)
 - Jasmine Documentation (https://jasmine.github.io/)
 - Notes de cours - Sequence 5
+
+## Sequence 5 - Optimisations et Performance
+
+### Ajouts Codex
+- Liste des taches avec `trackBy` pour limiter les re-renders.
+- `ChangeDetectionStrategy.OnPush` sur les composants pour reduire la detection.
+- Suppression d'un `setInterval` de debug dans la page des taches.
+- `npm run start:prod` : lance le serveur avec la configuration production pour des mesures realistes.
+- `npm run build:prod` : build production (minification + optimisations Angular).
+
+### Ajouts utilisateur
+- Resultats Lighthouse :
+- Accessibility : 100
+- Performance : 57
+- SEO : 90
+- Best practices : 100
+
