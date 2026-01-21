@@ -4,15 +4,13 @@
 
   @if (tasks$ | async; as tasks) {
     <ul class="task-list">
-      @for (t of tasks; track t.id) {
-        <li class="task-item">
-          <span>{{ t.title }}</span>
-          <div class="task-actions">
-            <button class="btn ghost" (click)="highlightTask(t.title)">Mettre en avant</button>
-            <button class="btn danger" (click)="deleteTask(t.id)">Supprimer</button>
-          </div>
-        </li>
-      }
+      <li class="task-item" *ngFor="let t of tasks; trackBy: trackByTaskId">
+        <span>{{ t.title }}</span>
+        <div class="task-actions">
+          <button class="btn ghost" (click)="highlightTask(t.title)">Mettre en avant</button>
+          <button class="btn danger" (click)="deleteTask(t.id)">Supprimer</button>
+        </div>
+      </li>
     </ul>
   } @else {
     <p class="loading">Taches en cours...</p>

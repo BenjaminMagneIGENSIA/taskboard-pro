@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-task-highlight',
@@ -10,6 +10,7 @@ import { Component, Input } from '@angular/core';
     </div>
   `,
   styleUrls: ['./task-highlight.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskHighlightComponent {
   @Input() title = '';

@@ -1,14 +1,15 @@
-import { Component, EnvironmentInjector, ViewChild, ViewContainerRef, inject } from '@angular/core';
-import { AsyncPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, EnvironmentInjector, ViewChild, ViewContainerRef, inject } from '@angular/core';
+import { AsyncPipe, NgFor } from '@angular/common';
 import { TaskService } from '../../../core/services/task';
 import { TaskHighlightComponent } from '../task-highlight/task-highlight.component';
 
 @Component({
   selector: 'app-tasks-page',
   standalone: true,
-  imports: [AsyncPipe, TaskHighlightComponent],
+  imports: [AsyncPipe, NgFor, TaskHighlightComponent],
   templateUrl: './tasks-page.component.html',
-  styleUrls: ['./tasks-page.component.css']
+  styleUrls: ['./tasks-page.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TasksPageComponent {
   taskService = inject(TaskService);
@@ -30,6 +31,10 @@ export class TasksPageComponent {
     this.taskService.deleteTask(id);
   }
 
+  trackByTaskId(index: number, task: { id: number }) {
+    return task.id;
+  }
+
   highlightTask(title: string) {
     if (!this.highlightContainer) {
       return;
@@ -39,20 +44,5 @@ export class TasksPageComponent {
       environmentInjector: this.envInjector
     });
     componentRef.instance.title = title;
-  }
-
-  count = 0;
-  intervalId: any;
-
-  ngOnInit() {
-    this.intervalId = setInterval(() => {
-      this.count++;
-      console.log(this.count / 2 + ' secondes ecoulees');
-    }, 500);
-  }
-
-  ngOnDestroy() {
-    console.log('TasksPageComponent destroyed, interval arrete');
-    clearInterval(this.intervalId);
   }
 }
